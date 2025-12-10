@@ -100,7 +100,7 @@
     },
     "advanced": {
       "title": "高级设置",
-      "overlay": {
+      "overlayPosition": {
         "title": "覆盖层位置",
         "description": "在录音和转录期间显示视觉反馈覆盖层。在 Linux 上建议使用无。",
         "none": "无",
@@ -203,9 +203,9 @@
     }
   },
   "overlay": {
-    "recording": "录音中...",
-    "recognizing": "正在识别...",
-    "transcribing": "正在转录..."
+    "recording": "录音中",
+    "recognizing": "识别中",
+    "transcribing": "转录中"
   },
   "common": {
     "copy": "复制",

@@ -123,6 +123,7 @@ const settingUpdaters: {
     commands.changeMuteWhileRecordingSetting(value as boolean),
   append_trailing_space: (value) =>
     commands.changeAppendTrailingSpaceSetting(value as boolean),
+  ui_language: (value) => commands.changeUiLanguageSetting(value as string),
   log_level: (value) => commands.setLogLevel(value as any),
 };
 

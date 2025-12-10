@@ -100,7 +100,7 @@
     },
     "advanced": {
       "title": "Advanced Settings",
-      "overlay": {
+      "overlayPosition": {
         "title": "Overlay Position",
         "description": "Display visual feedback overlay during recording and transcription. On Linux 'None' is recommended.",
         "none": "None",
@@ -204,8 +204,8 @@
   },
   "overlay": {
     "recording": "Recording...",
-    "recognizing": "Recognizing...",
-    "transcribing": "Transcribing..."
+    "recognizing": "Recognizing",
+    "transcribing": "Transcribing"
   },
   "common": {
     "copy": "Copy",

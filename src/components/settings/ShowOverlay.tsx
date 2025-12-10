@@ -19,15 +19,15 @@ export const ShowOverlay: React.FC<ShowOverlayProps> = React.memo(
       "bottom") as OverlayPosition;
 
     const overlayOptions = [
-      { value: "none", label: t('settings.advanced.overlay.none') },
-      { value: "bottom", label: t('settings.advanced.overlay.bottom') },
-      { value: "top", label: t('settings.advanced.overlay.top') },
+      { value: "none", label: t('settings.advanced.overlayPosition.none') },
+      { value: "bottom", label: t('settings.advanced.overlayPosition.bottom') },
+      { value: "top", label: t('settings.advanced.overlayPosition.top') },
     ];
 
     return (
       <SettingContainer
-        title={t('settings.advanced.overlay.title')}
-        description={t('settings.advanced.overlay.description')}
+        title={t('settings.advanced.overlayPosition.title')}
+        description={t('settings.advanced.overlayPosition.description')}
         descriptionMode={descriptionMode}
         grouped={grouped}
       >
