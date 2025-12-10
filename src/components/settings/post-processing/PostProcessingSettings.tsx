@@ -161,11 +161,22 @@ const PostProcessingSettingsPromptsComponent: React.FC = () => {
       setDraftName("");
       setDraftText("");
     }
+
+    // Auto-select default prompt if no prompt is selected and default exists
+    if (!selectedPromptId && enabled && prompts.length > 0) {
+      const defaultPrompt = prompts.find((prompt) => prompt.id === "default_improve_transcriptions");
+      if (defaultPrompt) {
+        updateSetting("post_process_selected_prompt_id", defaultPrompt.id);
+      }
+    }
   }, [
     isCreating,
     selectedPromptId,
     selectedPrompt?.name,
     selectedPrompt?.prompt,
+    enabled,
+    prompts,
+    updateSetting,
   ]);
 
   const handlePromptSelect = (promptId: string | null) => {

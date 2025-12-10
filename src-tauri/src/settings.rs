@@ -358,7 +358,7 @@ fn default_sound_theme() -> SoundTheme {
 }
 
 fn default_post_process_enabled() -> bool {
-    false
+    true
 }
 
 fn default_post_process_provider_id() -> String {

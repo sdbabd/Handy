@@ -61,10 +61,21 @@ async fn maybe_post_process_transcription(
         return None;
     }
 
-    let selected_prompt_id = match &settings.post_process_selected_prompt_id {
-        Some(id) => id.clone(),
+    // Use selected prompt or fall back to default
+    let selected_prompt_id = settings.post_process_selected_prompt_id
+        .clone()
+        .or_else(|| {
+            // Try to find the default prompt
+            settings.post_process_prompts
+                .iter()
+                .find(|p| p.id == "default_improve_transcriptions")
+                .map(|p| p.id.clone())
+        });
+
+    let selected_prompt_id = match selected_prompt_id {
+        Some(id) => id,
         None => {
-            debug!("Post-processing skipped because no prompt is selected");
+            debug!("Post-processing skipped because no prompt is selected and no default prompt found");
             return None;
         }
     };
@@ -340,15 +351,17 @@ impl ShortcutAction for TranscribeAction {
                             let mut post_process_prompt: Option<String> = None;
 
                             // First, check if Chinese variant conversion is needed
+                            let mut current_text = transcription.clone();
                             if let Some(converted_text) =
-                                maybe_convert_chinese_variant(&settings, &transcription).await
+                                maybe_convert_chinese_variant(&settings, &current_text).await
                             {
                                 final_text = converted_text.clone();
-                                post_processed_text = Some(converted_text);
+                                current_text = converted_text;
                             }
-                            // Then apply regular post-processing if enabled
-                            else if let Some(processed_text) =
-                                maybe_post_process_transcription(&settings, &transcription).await
+
+                            // Then apply regular post-processing if enabled (to the potentially converted text)
+                            if let Some(processed_text) =
+                                maybe_post_process_transcription(&settings, &current_text).await
                             {
                                 final_text = processed_text.clone();
                                 post_processed_text = Some(processed_text);
@@ -362,6 +375,12 @@ impl ShortcutAction for TranscribeAction {
                                     {
                                         post_process_prompt = Some(prompt.prompt.clone());
                                     }
+                                }
+                            } else if post_processed_text.is_none() {
+                                // If no post-processing was done, but Chinese conversion happened,
+                                // store the converted text as post-processed
+                                if current_text != transcription {
+                                    post_processed_text = Some(current_text.clone());
                                 }
                             }
 
