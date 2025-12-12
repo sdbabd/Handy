@@ -189,10 +189,51 @@
         "title": "声音主题",
         "description": "选择录音开始和停止反馈的声音主题"
       },
+      "updateChecks": {
+        "title": "检查更新",
+        "description": "定期检查应用程序更新"
+      },
+      "historyLimit": {
+        "title": "历史记录限制",
+        "description": "限制保存的历史记录条目数量"
+      },
+      "recordingRetentionPeriod": {
+        "title": "录音保留期",
+        "description": "设置录音文件保留多长时间"
+      },
+      "alwaysOnMicrophone": {
+        "title": "常开麦克风",
+        "description": "保持麦克风活跃以进行低延迟录音"
+      },
+      "clamshellMicrophone": {
+        "title": "闭合麦克风",
+        "description": "当笔记本盖子关闭时使用内置麦克风"
+      },
+      "postProcessing": {
+        "title": "后期处理",
+        "description": "启用转录后期处理功能"
+      },
+      "muteWhileRecording": {
+        "title": "录音时静音",
+        "description": "录音期间静音系统音频"
+      },
+      "appendTrailingSpace": {
+        "title": "添加尾随空格",
+        "description": "在转录文本末尾添加空格"
+      },
+      "cancelShortcut": {
+        "title": "取消快捷键",
+        "description": "设置取消录音的快捷键"
+      },
       "viewLogs": "查看日志",
       "clearHistory": "清除历史",
       "exportHistory": "导出历史",
       "open": "打开",
+      "entries": "条目",
+      "deleteRecordings": "删除录音",
+      "preserve": "保留",
+      "recordings": "录音",
+      "escape": "Esc",
       "levels": {
         "error": "错误",
         "warn": "警告",

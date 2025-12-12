@@ -189,10 +189,35 @@
         "title": "Sound Theme",
         "description": "Choose a sound theme for recording start and stop feedback"
       },
+      "updateChecks": {
+        "title": "Check for Updates",
+        "description": "Allow Handy to automatically check for updates and enable manual checks from the footer or tray menu."
+      },
+      "historyLimit": {
+        "title": "History Limit",
+        "description": "Maximum number of transcription entries to keep in history"
+      },
+      "alwaysOnMicrophone": {
+        "title": "Always-On Microphone",
+        "description": "Keep microphone active for low latency recording. This may prevent your computer from sleeping."
+      },
+      "postProcessing": {
+        "title": "Post Process",
+        "description": "Enable post-processing of transcribed text using language models via OpenAI Compatible API."
+      },
+      "muteWhileRecording": {
+        "title": "Mute While Recording",
+        "description": "Automatically mute all sound output while Handy is recording, then restore it when finished."
+      },
+      "appendTrailingSpace": {
+        "title": "Append Trailing Space",
+        "description": "Automatically add a space at the end of transcribed text, making it easier to dictate multiple sentences in a row."
+      },
       "viewLogs": "View Logs",
       "clearHistory": "Clear History",
       "exportHistory": "Export History",
       "open": "Open",
+      "entries": "entries",
       "levels": {
         "error": "Error",
         "warn": "Warn",
