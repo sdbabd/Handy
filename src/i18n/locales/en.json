@@ -169,9 +169,37 @@
         "title": "Debug Mode",
         "description": "Enable debug mode for advanced troubleshooting"
       },
+      "logDirectory": {
+        "title": "Log Directory",
+        "description": "Location on disk where Handy writes rotated log files"
+      },
+      "logLevel": {
+        "title": "Log Level",
+        "description": "Choose how verbose Handy should be while logging to disk"
+      },
+      "wordCorrectionThreshold": {
+        "title": "Word Correction Threshold",
+        "description": "Controls how aggressively custom words are applied. Lower values mean fewer corrections will be made, higher values mean more corrections. Range: 0 (least aggressive) to 1 (most aggressive)."
+      },
+      "debugPaths": {
+        "title": "Debug Paths",
+        "description": "Display internal file paths and directories for debugging purposes"
+      },
+      "soundTheme": {
+        "title": "Sound Theme",
+        "description": "Choose a sound theme for recording start and stop feedback"
+      },
       "viewLogs": "View Logs",
       "clearHistory": "Clear History",
-      "exportHistory": "Export History"
+      "exportHistory": "Export History",
+      "open": "Open",
+      "levels": {
+        "error": "Error",
+        "warn": "Warn",
+        "info": "Info",
+        "debug": "Debug",
+        "trace": "Trace"
+      }
     },
     "about": {
       "title": "About",

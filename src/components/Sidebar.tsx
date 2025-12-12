@@ -3,7 +3,6 @@ import { Cog, FlaskConical, History, Info, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import HandyTextLogo from "./icons/HandyTextLogo";
 import HandyHand from "./icons/HandyHand";
-import { useSettings } from "../hooks/useSettings";
 import {
   GeneralSettings,
   AdvancedSettings,
@@ -59,7 +58,7 @@ export const SECTIONS_CONFIG = {
     label: "Debug",
     icon: FlaskConical,
     component: DebugSettings,
-    enabled: (settings) => settings?.debug_mode ?? false,
+    enabled: () => true,
   },
   about: {
     label: "About",
@@ -78,11 +77,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   activeSection,
   onSectionChange,
 }) => {
-  const { settings } = useSettings();
   const { t } = useTranslation();
 
 const availableSections = Object.entries(SECTIONS_CONFIG)
-    .filter(([_, config]) => config.enabled(settings))
+    .filter(([_, config]) => config.enabled())
     .map(([id, config]) => ({
       id: id as SidebarSection,
       ...config,

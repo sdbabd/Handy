@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { SettingContainer } from "../../ui/SettingContainer";
 
 interface DebugPathsProps {
@@ -10,10 +11,12 @@ export const DebugPaths: React.FC<DebugPathsProps> = ({
   descriptionMode = "inline",
   grouped = false,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <SettingContainer
-      title="Debug Paths"
-      description="Display internal file paths and directories for debugging purposes"
+      title={t('settings.debug.debugPaths.title')}
+      description={t('settings.debug.debugPaths.description')}
       descriptionMode={descriptionMode}
       grouped={grouped}
     >

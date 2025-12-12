@@ -169,9 +169,37 @@
         "title": "调试模式",
         "description": "启用调试模式进行高级故障排除"
       },
+      "logDirectory": {
+        "title": "日志目录",
+        "description": "Handy 在磁盘上写入滚动日志文件的位置"
+      },
+      "logLevel": {
+        "title": "日志级别",
+        "description": "选择 Handy 在记录到磁盘时的详细程度"
+      },
+      "wordCorrectionThreshold": {
+        "title": "单词修正阈值",
+        "description": "控制自定义词汇的应用程度。较低的值意味着较少的修正，较高的值意味着更多的修正。范围：0（最少修正）到 1（最多修正）。"
+      },
+      "debugPaths": {
+        "title": "调试路径",
+        "description": "显示用于调试目的的内部文件路径和目录"
+      },
+      "soundTheme": {
+        "title": "声音主题",
+        "description": "选择录音开始和停止反馈的声音主题"
+      },
       "viewLogs": "查看日志",
       "clearHistory": "清除历史",
-      "exportHistory": "导出历史"
+      "exportHistory": "导出历史",
+      "open": "打开",
+      "levels": {
+        "error": "错误",
+        "warn": "警告",
+        "info": "信息",
+        "debug": "调试",
+        "trace": "跟踪"
+      }
     },
     "about": {
       "title": "关于",
