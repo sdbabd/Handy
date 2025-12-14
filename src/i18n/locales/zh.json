@@ -5,7 +5,7 @@
     "history": "历史记录",
     "debug": "调试设置",
     "about": "关于",
-    "postProcess": "后期处理"
+    "postprocessing": "AI后处理"
   },
   "settings": {
     "groups": {
@@ -198,8 +198,14 @@
         "description": "限制保存的历史记录条目数量"
       },
       "recordingRetentionPeriod": {
-        "title": "录音保留期",
-        "description": "设置录音文件保留多长时间"
+        "title": "删除录音",
+        "description": "自动从设备删除录音文件",
+        "never": "从不",
+        "preserve": "保留 {count} 个录音",
+        "after3days": "3天后",
+        "after2weeks": "2周后",
+        "after3months": "3个月后",
+        "placeholder": "选择保留期..."
       },
       "alwaysOnMicrophone": {
         "title": "常开麦克风",
@@ -207,10 +213,12 @@
       },
       "clamshellMicrophone": {
         "title": "闭合麦克风",
-        "description": "当笔记本盖子关闭时使用内置麦克风"
+        "description": "当笔记本盖子关闭时选择不同的麦克风使用",
+        "loading": "加载中...",
+        "select": "选择麦克风..."
       },
       "postProcessing": {
-        "title": "后期处理",
+        "title": "AI后处理",
         "description": "启用转录后期处理功能"
       },
       "muteWhileRecording": {

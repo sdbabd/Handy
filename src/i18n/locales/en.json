@@ -5,7 +5,7 @@
     "history": "History",
     "debug": "Debug",
     "about": "About",
-    "postProcess": "Post Process"
+    "postprocessing": "AI Post-Processing"
   },
   "settings": {
     "groups": {
@@ -197,12 +197,28 @@
         "title": "History Limit",
         "description": "Maximum number of transcription entries to keep in history"
       },
+      "recordingRetentionPeriod": {
+        "title": "Delete Recordings",
+        "description": "Automatically delete recordings from the device",
+        "never": "Never",
+        "preserve": "Preserve {count} Recordings",
+        "after3days": "After 3 Days",
+        "after2weeks": "After 2 Weeks",
+        "after3months": "After 3 Months",
+        "placeholder": "Select retention period..."
+      },
       "alwaysOnMicrophone": {
         "title": "Always-On Microphone",
         "description": "Keep microphone active for low latency recording. This may prevent your computer from sleeping."
       },
+      "clamshellMicrophone": {
+        "title": "Clamshell Microphone",
+        "description": "Choose a different microphone to use when your laptop lid is closed",
+        "loading": "Loading...",
+        "select": "Select microphone..."
+      },
       "postProcessing": {
-        "title": "Post Process",
+        "title": "AI Post-Processing",
         "description": "Enable post-processing of transcribed text using language models via OpenAI Compatible API."
       },
       "muteWhileRecording": {
