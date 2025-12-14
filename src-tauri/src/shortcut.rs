@@ -396,13 +396,6 @@ pub fn change_post_process_base_url_setting(
         .post_process_provider_mut(&provider_id)
         .expect("Provider looked up above must exist");
 
-    if !provider.allow_base_url_edit {
-        return Err(format!(
-            "Provider '{}' does not allow editing the base URL",
-            label
-        ));
-    }
-
     provider.base_url = base_url;
     settings::write_settings(&app, settings);
     Ok(())

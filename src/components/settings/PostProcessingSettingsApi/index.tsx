@@ -1,1 +1,1 @@
-export { PostProcessingSettingsApi } from "../post-processing/PostProcessingSettings";
+export { PostProcessingSettingsApi } from "./PostProcessingSettingsApi";

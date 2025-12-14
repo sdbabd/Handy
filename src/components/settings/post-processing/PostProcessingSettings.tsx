@@ -58,7 +58,7 @@ const PostProcessingSettingsApiComponent: React.FC = () => {
 
       <SettingContainer
         title="Base URL"
-        description="API base URL for the selected provider. Only the custom provider can be edited."
+        description="API base URL for the selected provider. Customize this endpoint for compatible services or self-hosted instances."
         descriptionMode="tooltip"
         layout="horizontal"
         grouped={true}
@@ -68,10 +68,7 @@ const PostProcessingSettingsApiComponent: React.FC = () => {
             value={state.baseUrl}
             onBlur={state.handleBaseUrlChange}
             placeholder="https://api.openai.com/v1"
-            disabled={
-              !state.selectedProvider?.allow_base_url_edit ||
-              state.isBaseUrlUpdating
-            }
+            disabled={state.isBaseUrlUpdating}
             className="min-w-[380px]"
           />
         </div>
@@ -247,15 +244,7 @@ const PostProcessingSettingsPromptsComponent: React.FC = () => {
     setDraftText("");
   };
 
-  if (!enabled) {
-    return (
-      <DisabledNotice>
-        Post processing is currently disabled. Enable it in Debug settings to
-        configure.
-      </DisabledNotice>
-    );
-  }
-
+  
   const hasPrompts = prompts.length > 0;
   const isDirty =
     !!selectedPrompt &&
