@@ -571,11 +571,26 @@ pub fn get_settings(app: &AppHandle) -> AppSettings {
         .expect("Failed to initialize store");
 
     if let Some(settings_value) = store.get("settings") {
-        serde_json::from_value::<AppSettings>(settings_value).unwrap_or_else(|_| {
+        let mut settings: AppSettings = serde_json::from_value::<AppSettings>(settings_value).unwrap_or_else(|_| {
             let default_settings = get_default_settings();
             store.set("settings", serde_json::to_value(&default_settings).unwrap());
             default_settings
-        })
+        });
+
+        // Migration: Ensure all providers allow base URL editing
+        let mut needs_save = false;
+        for provider in &mut settings.post_process_providers {
+            if !provider.allow_base_url_edit {
+                provider.allow_base_url_edit = true;
+                needs_save = true;
+            }
+        }
+
+        if needs_save {
+            store.set("settings", serde_json::to_value(&settings).unwrap());
+        }
+
+        settings
     } else {
         let default_settings = get_default_settings();
         store.set("settings", serde_json::to_value(&default_settings).unwrap());

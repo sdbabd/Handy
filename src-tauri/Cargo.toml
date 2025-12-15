@@ -1,6 +1,6 @@
 [package]
 name = "handy"
-version = "0.6.7"
+version = "0.6.8"
 description = "Handy"
 authors = ["cjpais"]
 edition = "2021"
@@ -8,7 +8,7 @@ license = "MIT"
 default-run = "handy"
 
 [env]
-VULKAN_SDK = { value = "C:\\VulkanSDK\\1.4.328.1", force = true }
+VULKAN_SDK = { value = "C:\\VulkanSDK\\1.3.280.0", force = true }
 
 [profile.dev]
 incremental = true # Compile your binary in smaller steps.

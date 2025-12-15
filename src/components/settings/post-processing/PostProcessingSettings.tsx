@@ -14,6 +14,7 @@ import { ProviderSelect } from "../PostProcessingSettingsApi/ProviderSelect";
 import { BaseUrlField } from "../PostProcessingSettingsApi/BaseUrlField";
 import { ApiKeyField } from "../PostProcessingSettingsApi/ApiKeyField";
 import { ModelSelect } from "../PostProcessingSettingsApi/ModelSelect";
+import { TestConnectionButton } from "../PostProcessingSettingsApi/TestConnectionButton";
 import { usePostProcessProviderState } from "../PostProcessingSettingsApi/usePostProcessProviderState";
 import { useSettings } from "../../../hooks/useSettings";
 import type { LLMPrompt } from "@/bindings";
@@ -130,6 +131,20 @@ const PostProcessingSettingsApiComponent: React.FC = () => {
             />
           </ResetButton>
         </div>
+      </SettingContainer>
+
+      <SettingContainer
+        title="Connection"
+        description="Test the connection to your AI service provider."
+        descriptionMode="tooltip"
+        layout="horizontal"
+        grouped={true}
+      >
+        <TestConnectionButton
+          providerId={state.selectedProviderId}
+          disabled={!state.apiKey || !state.model || state.isBaseUrlUpdating || state.isApiKeyUpdating || state.isModelUpdating}
+          className="min-w-[150px]"
+        />
       </SettingContainer>
     </>
   );

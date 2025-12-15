@@ -1,4 +1,4 @@
-use log::{error, warn};
+use log::{debug, error, warn};
 use serde::Serialize;
 use specta::Type;
 use std::sync::Arc;
@@ -906,4 +906,79 @@ pub fn unregister_shortcut(app: &AppHandle, binding: ShortcutBinding) -> Result<
     })?;
 
     Ok(())
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn test_post_process_connection(
+    app: AppHandle,
+    provider_id: String,
+) -> Result<String, String> {
+    let settings = settings::get_settings(&app);
+
+    let provider = match settings.post_process_provider(&provider_id) {
+        Some(provider) => provider,
+        None => return Err(format!("Provider '{}' not found", provider_id)),
+    };
+
+    let api_key = match settings.post_process_api_keys.get(&provider_id) {
+        Some(key) if !key.trim().is_empty() => key.clone(),
+        _ => return Err("API key is not configured".to_string()),
+    };
+
+    let model = match settings.post_process_models.get(&provider_id) {
+        Some(model) if !model.trim().is_empty() => model.clone(),
+        _ => return Err("Model is not configured".to_string()),
+    };
+
+    debug!(
+        "Testing post-processing connection for provider '{}' (base_url: '{}', model: '{}')",
+        provider.id, provider.base_url, model
+    );
+
+    // Create client
+    let client = match crate::llm_client::create_client(provider, api_key) {
+        Ok(client) => client,
+        Err(e) => return Err(format!("Failed to create client: {}", e)),
+    };
+
+    // Build a simple test request
+    let test_prompt = "Test message. Please respond with 'Connection successful'.";
+    let message = match async_openai::types::ChatCompletionRequestUserMessageArgs::default()
+        .content(test_prompt)
+        .build()
+    {
+        Ok(msg) => async_openai::types::ChatCompletionRequestMessage::User(msg),
+        Err(e) => return Err(format!("Failed to build message: {}", e)),
+    };
+
+    let request = match async_openai::types::CreateChatCompletionRequestArgs::default()
+        .model(&model)
+        .messages(vec![message])
+        .max_tokens(50u32)
+        .build()
+    {
+        Ok(req) => req,
+        Err(e) => return Err(format!("Failed to build request: {}", e)),
+    };
+
+    // Send the test request
+    match client.chat().create(request).await {
+        Ok(response) => {
+            if let Some(choice) = response.choices.first() {
+                if let Some(content) = &choice.message.content {
+                    debug!("Post-processing connection test successful");
+                    Ok(format!("✅ Connection successful!\n\nResponse: {}", content))
+                } else {
+                    Err("No content in response".to_string())
+                }
+            } else {
+                Err("No choices in response".to_string())
+            }
+        }
+        Err(e) => {
+            error!("Post-processing connection test failed: {}", e);
+            Err(format!("❌ Connection failed: {}", e))
+        }
+    }
 }

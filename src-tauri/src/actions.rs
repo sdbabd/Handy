@@ -47,6 +47,11 @@ async fn maybe_post_process_transcription(
         }
     };
 
+    debug!(
+        "Post-processing using provider '{}' with base_url: '{}'",
+        provider.id, provider.base_url
+    );
+
     let model = settings
         .post_process_models
         .get(&provider.id)

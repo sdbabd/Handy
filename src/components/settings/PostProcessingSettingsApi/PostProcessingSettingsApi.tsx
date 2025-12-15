@@ -9,6 +9,7 @@ import { ProviderSelect } from "./ProviderSelect";
 import { BaseUrlField } from "./BaseUrlField";
 import { ApiKeyField } from "./ApiKeyField";
 import { ModelSelect } from "./ModelSelect";
+import { TestConnectionButton } from "./TestConnectionButton";
 import { usePostProcessProviderState } from "./usePostProcessProviderState";
 
 const DisabledNotice: React.FC<{ children: React.ReactNode }> = ({
@@ -116,6 +117,20 @@ const PostProcessingSettingsApiComponent: React.FC = () => {
             />
           </ResetButton>
         </div>
+      </SettingContainer>
+
+      <SettingContainer
+        title="Connection"
+        description="Test the connection to your AI service provider."
+        descriptionMode="tooltip"
+        layout="horizontal"
+        grouped={true}
+      >
+        <TestConnectionButton
+          providerId={state.selectedProviderId}
+          disabled={!state.apiKey || !state.model || state.isBaseUrlUpdating || state.isApiKeyUpdating || state.isModelUpdating}
+          className="min-w-[150px]"
+        />
       </SettingContainer>
     </>
   );

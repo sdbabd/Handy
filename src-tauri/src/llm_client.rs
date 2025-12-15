@@ -1,5 +1,6 @@
 use crate::settings::PostProcessProvider;
 use async_openai::{config::OpenAIConfig, Client};
+use log::debug;
 
 /// Create an OpenAI-compatible client configured for the given provider
 pub fn create_client(
@@ -7,6 +8,10 @@ pub fn create_client(
     api_key: String,
 ) -> Result<Client<OpenAIConfig>, String> {
     let base_url = provider.base_url.trim_end_matches('/');
+    debug!(
+        "Creating LLM client for provider '{}' with base_url: '{}'",
+        provider.id, base_url
+    );
     let config = OpenAIConfig::new()
         .with_api_base(base_url)
         .with_api_key(api_key);
